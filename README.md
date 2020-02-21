@@ -27,6 +27,8 @@ library_type = user
 	d. For each suggestion, select whether you would like to proceed and modify the particular title or move to the next one  
 4. Open Zotero and syncronize your library to see the magic!
 
+![tutorial](examples/Tutorial.gif)
+
 ### Requirements
 1. List of organisms' genus names in a csv file (one in a line), or manually enter genus names
 2. Config file containing Zotero library API key and library ID obtained from [Zotero's web client settings](https://www.zotero.org/settings/keys) 
@@ -38,4 +40,4 @@ library_type = user
 2. Add exception handling for program abort (no input files selection)
 3. Tidy up functions
 4. Command line version
-5. Make gif animation 
+
