@@ -1,5 +1,5 @@
 # MAke ZOtero SPEcies Great Again (mazospega)
-MAke ZOtero SPEcies Great Again (mazospega) - A python script to italicize and maintain letter case for species names in item titles in Zotero collection.
+Italicize and maintain letter case for species names in titles of a Zotero collection.
 
 ## Background
 [Zotero](https://www.zotero.org/) is an amazing free cloud-based reference management tool, with integrated browser and word processing addins, making it an absolute breeze to collect references from the web and use them in your documents. 
