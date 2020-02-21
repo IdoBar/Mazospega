@@ -16,7 +16,7 @@ from urllib.error import HTTPError
 # get zotero connection details from ~/.zoterorc file
 
 config = configparser.ConfigParser()
-zotero_config_file=eg.fileopenbox(msg='Please select Zotero configuration file (which should include your API key, Library id and type, see documentation for details.)', title='Zotero config file', filetypes =["*.*", "All files"], default="%s\\*.zotero*" % os.getcwd())
+zotero_config_file=eg.fileopenbox(msg='Please select Zotero configuration file (which should include your API key, Library id and type, see documentation for details.)', title='Zotero config file', filetypes =[["*.cfg", "*.ini", "Config files"], ["*.*", "All files"]], default="%s\\*.zotero*" % os.getcwd())
 config.read(zotero_config_file)
 api_key = config['zotero']['api_key'] # Use your Zotero api key here
 # print('api_key: ' + api_key)
@@ -30,9 +30,9 @@ Items_input = [] # empty input list
 updated_entries=[] # empty output titles list
 # Prompt for manual input
 User_input=eg.enterbox(msg='''
-    Enter genus names to be searched and italicized, seperated by commas and press enter.
-    Example: Botrytis, Cicer, Lens,Oryza, etc.
-    If genus names are in CSV file, enter CSV and wait to be prompted to open the file.''', title='Input Genus names')
+Enter genus names to be searched and italicized, seperated by commas and press enter.
+Example: Botrytis, Cicer, Lens,Oryza, etc.
+If genus names are in CSV file, enter CSV and wait to be prompted to open the file.''', title='Input Genus names')
 
 
 
@@ -86,7 +86,10 @@ for genus in Items_input:
             newSpecies =  re.sub(search_string , '<i><span class="nocase">\g<2></span></i>', item['data']['title'])
             newTitle = re.sub(search_string, '\g<1><i><span class="nocase">\g<2></span></i>\g<3>', item['data']['title'])
     # Ask interactively if the entry should be changed
-            annotYN=eg.boolbox(msg='%d. Do you want to italicize species name in title "%s"?\nFrom this: %s To this: %s' % (i+1, item['data']['title'], genus_match[2], newSpecies), title='Italicize "%s" in Zotero Titles' % genus, choices=('Yes', 'No'))
+            change_message ='''%d. Do you want to italicize species name in title "%s"?
+From this: %s 
+To this: %s''' % (i+1, item['data']['title'], genus_match[2], newSpecies)
+            annotYN=eg.ccbox(msg=change_message, title='Italicize "%s" in Zotero Titles' % genus)
             if annotYN:
                 print('Updating entry %s' % item['key'])
                 item['data']['title'] = newTitle
@@ -95,6 +98,6 @@ for genus in Items_input:
 if updated_entries:
     print('The following titles were updated:')#, '\n '.join(map(str, updated_entries)))            
     for j, title in enumerate(updated_entries):
-       print('%s. %s.\n' % (j+1, title))            
+       print('%s. %s' % (j+1, title))            
     # print('The following entries were updated for Genus , '.join(map(str, updated_entries)))
     
