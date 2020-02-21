@@ -1,4 +1,4 @@
-# Mazospega
+# MAke ZOtero SPEcies Great Again (mazospega)
 MAke ZOtero SPEcies Great Again (mazospega) - A python script to italicize and maintain letter case for species names in item titles in Zotero collection.
 
 ## Background
