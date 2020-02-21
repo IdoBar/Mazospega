@@ -1,0 +1,5 @@
+[zotero]
+api_key = <Paste your Zotero api key here>
+library_id = <Paste your Zotero library id here>
+library_type = user
+# Set library_type to 'group' if you are accessing a shared group library
